@@ -123,6 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'max_page_size' => env('MAX_PAGE_SIZE', 1_000),
     'random_page_numbers_size' => env('RANDOM_PAGE_NUMBERS_SIZE', 10)
 
 ];

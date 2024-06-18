@@ -19,7 +19,7 @@ class PageTest extends TestCase
 
         $this->assertDatabaseCount('pages', 1);
 
-        $pageNumberSize = config('app.random_page_numbers_size');
+        $pageNumberSize = config('app.random_numbers_qty');
 
         $this->assertCount($pageNumberSize, $numbers);
 

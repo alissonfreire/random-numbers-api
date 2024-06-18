@@ -15,7 +15,7 @@ class ApiPageTest extends TestCase
         $this->assertDatabaseCount('pages', 0);
 
         $pageNumber = 1;
-        $pageNumberSize = config('app.random_page_numbers_size');
+        $pageNumberSize = config('app.random_numbers_qty');
 
         $response = $this->call('get', "/api/page/{$pageNumber}", ['no_error' => true]);
 
@@ -72,7 +72,7 @@ class ApiPageTest extends TestCase
 
     public function test_with_page_number_greater_than_max_page_size(): void
     {
-        $max_page_size = (int) config('app.max_page_size');
+        $max_page_size = config('app.max_page_size');
         $pageNumber = $max_page_size + 1;
 
         $response = $this->call('get', "/api/page/{$pageNumber}", ['no_error' => true]);

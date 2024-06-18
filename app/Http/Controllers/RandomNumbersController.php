@@ -10,7 +10,7 @@ class RandomNumbersController extends Controller
 {
     function random(Request $request): Response
     {
-        $qty = $request->input('qty', 10);
+        $qty = $request->input('qty', $this->randomNumbersQty());
 
         $numbers = RandomUtils::generateNumbers($qty);
 
@@ -18,7 +18,7 @@ class RandomNumbersController extends Controller
             return response(["numbers" => $numbers]);
         }
 
-        $chance = $request->input('chance', 20);
+        $chance = $request->input('chance', $this->errorChance());
 
         if (RandomUtils::randomChance($chance)) {
             return response([
@@ -27,5 +27,15 @@ class RandomNumbersController extends Controller
         }
 
         return response(["numbers" => $numbers]);
+    }
+
+    function errorChance()
+    {
+        return config('app.error_chance');
+    }
+
+    function randomNumbersQty()
+    {
+        return config('app.random_numbers_qty');
     }
 }

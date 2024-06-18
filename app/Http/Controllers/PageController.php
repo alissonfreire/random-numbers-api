@@ -27,7 +27,7 @@ class PageController extends Controller
             return $successResponse;
         }
 
-        $chance = $request->input('chance', 20);
+        $chance = $request->input('chance', $this->errorChance());
 
         if (RandomUtils::randomChance($chance)) {
             return response([
@@ -70,8 +70,13 @@ class PageController extends Controller
         return $pageNumber;
     }
 
+    function errorChance()
+    {
+        return config('app.error_chance');
+    }
+
     function maxPageSize()
     {
-        return (int) config('app.max_page_size');
+        return config('app.max_page_size');
     }
 }

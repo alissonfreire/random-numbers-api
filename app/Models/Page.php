@@ -24,7 +24,7 @@ class Page extends Model
             return $page->numbers;
         }
 
-        $pageNumberSize = config('app.random_page_numbers_size');
+        $pageNumberSize = config('app.random_numbers_qty');
 
         $numbers = RandomUtils::generateNumbers($pageNumberSize);
 

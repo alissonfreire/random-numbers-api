@@ -123,7 +123,11 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'max_page_size' => env('MAX_PAGE_SIZE', 1_000),
-    'random_page_numbers_size' => env('RANDOM_PAGE_NUMBERS_SIZE', 10)
+    /**
+     * Parameters for random computations
+     */
+    'error_chance' => (int) env('ERROR_CHANCE', 20),
+    'max_page_size' => (int) env('MAX_PAGE_SIZE', 1_000),
+    'random_numbers_qty' => (int) env('RANDOM_NUMBERS_QTY', 10)
 
 ];

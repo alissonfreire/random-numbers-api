@@ -12,15 +12,13 @@ class RandomNumbersController extends Controller
     {
         $qty = $request->input('qty', 10);
 
-        return response([
-            "numbers" => RandomUtils::generateNumbers($qty)
-        ]);
-    }
+        $numbers = RandomUtils::generateNumbers($qty);
 
-    function maybeErrorRandom(Request $request): Response
-    {
-        $random = $this->random($request);
-        $chance = RandomUtils::getValidRandomChance($request->input('chance', 20));
+        if ($request->boolean('no_error')) {
+            return response(["numbers" => $numbers]);
+        }
+
+        $chance = $request->input('chance', 20);
 
         if (RandomUtils::randomChance($chance)) {
             return response([
@@ -28,6 +26,6 @@ class RandomNumbersController extends Controller
             ], 400);
         }
 
-        return $random;
+        return response(["numbers" => $numbers]);
     }
 }

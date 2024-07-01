@@ -13,4 +13,4 @@ use App\Http\Controllers\InfoController;
 
 Route::get('/info', [InfoController::class, 'info']);
 Route::get('/random', [RandomNumbersController::class, 'random']);
-Route::get('/page/{pageNumber}', [PageController::class, 'page']);
+Route::get('/pages/{pageNumber}', [PageController::class, 'page']);

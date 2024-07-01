@@ -17,7 +17,7 @@ class ApiPageTest extends TestCase
         $pageNumber = 1;
         $pageNumberSize = config('app.random_numbers_qty');
 
-        $response = $this->call('get', "/api/page/{$pageNumber}", ['no_error' => true]);
+        $response = $this->call('get', "/api/pages/{$pageNumber}", ['no_error' => true]);
 
         $response->assertStatus(200);
 
@@ -40,7 +40,7 @@ class ApiPageTest extends TestCase
 
         Page::factory(['page' => $pageNumber, 'numbers' => $numbers])->create();
 
-        $response = $this->call('get', "/api/page/{$pageNumber}", ['no_error' => true]);
+        $response = $this->call('get', "/api/pages/{$pageNumber}", ['no_error' => true]);
 
         $response->assertStatus(200);
 
@@ -57,7 +57,7 @@ class ApiPageTest extends TestCase
         $invalidValues = [-1, 0, 'test'];
 
         foreach ($invalidValues as $pageNumber) {
-            $response = $this->call('get', "/api/page/{$pageNumber}", ['no_error' => true]);
+            $response = $this->call('get', "/api/pages/{$pageNumber}", ['no_error' => true]);
 
             $response->assertStatus(422);
 
@@ -75,7 +75,7 @@ class ApiPageTest extends TestCase
         $max_page_size = config('app.max_page_size');
         $pageNumber = $max_page_size + 1;
 
-        $response = $this->call('get', "/api/page/{$pageNumber}", ['no_error' => true]);
+        $response = $this->call('get', "/api/pages/{$pageNumber}", ['no_error' => true]);
 
         $response->assertStatus(422);
 
@@ -91,7 +91,7 @@ class ApiPageTest extends TestCase
     {
         $pageNumber = 1;
 
-        $response = $this->call('get', "/api/page/{$pageNumber}", ['chance' => 100]);
+        $response = $this->call('get', "/api/pages/{$pageNumber}", ['chance' => 100]);
 
         $response->assertStatus(400);
 
